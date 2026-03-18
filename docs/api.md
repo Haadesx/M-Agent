@@ -109,6 +109,7 @@ Generate a new workspace from the provided brief.
 - Creates `instances/<slug>/`
 - Copies shared scaffolding
 - Generates product-level markdown agents
+- Writes root-level tool entrypoints for Codex, Claude Code, Cursor, and Copilot
 - If `repoPath` is present, runs repo analysis and generates codebase-aware artifacts
 - Writes `manifest.json`
 
@@ -119,7 +120,8 @@ If `repoPath` is present, the workspace also includes:
 - `TASK_DISPATCH.md`
 - `memory/brain/resources/codebase-analysis.md`
 - `skills/generated/slices/*.md`
-- repo-aware Cursor, Copilot, Windsurf, and Codex exports
+- `.claude/agents/*.md` for repo slices
+- repo-aware Claude Code, Cursor, Copilot, Windsurf, and Codex exports
 
 ### Response
 

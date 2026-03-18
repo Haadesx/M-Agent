@@ -1,6 +1,34 @@
 # Tool Integrations
 
-The generator writes tool-specific bundles into each workspace.
+The generator supports two delivery modes:
+
+- root-level repo entrypoints so a generated workspace can be opened directly in an agentic coding tool
+- `integrations/` bundles when a team wants exportable platform-specific packs
+
+## Root-level direct consumption
+
+Each generated workspace can be used directly by flagship coding tools from the repository root.
+
+Path:
+
+- `AGENTS.md`
+- `CLAUDE.md`
+- `AGENT_ENTRYPOINTS.md`
+- `.claude/agents/*.md`
+- `.claude/commands/*.md`
+- `.cursor/rules/*.mdc`
+- `.github/copilot-instructions.md`
+- `.github/prompts/*.prompt.md`
+
+Purpose:
+
+- let Codex-style agents start from `AGENTS.md`
+- let Claude Code start from `CLAUDE.md`, native specialist agents, and project commands
+- let Cursor and Copilot pick up repo-level instructions without a separate export step
+
+## Export bundles
+
+The generator also writes tool-specific bundles into each workspace.
 
 ## Codex
 
@@ -13,13 +41,22 @@ Purpose:
 
 - give Codex-style agents repo guidance
 - anchor the workflow around markdown artifacts and review gates
-- expose the generated workspace as a repo-scoped instruction pack
 
-Import pattern:
+## Claude Code
 
-- open the generated workspace in Codex
-- start from `integrations/codex/AGENTS.md`
-- use the generated markdown skills and slice agents as the operating context
+Path:
+
+- `integrations/claude/CLAUDE.md`
+- `integrations/claude/.claude/agents/*.md`
+- `integrations/claude/.claude/commands/analyze-repo.md`
+- `integrations/claude/.claude/commands/generate-slice-agents.md`
+- `integrations/claude/.claude/commands/bootstrap-workspace.md`
+
+Purpose:
+
+- provide Claude Code project memory
+- provide native Claude Code specialist agents for product and repo slices
+- standardize repo analysis and slice-agent generation through project commands
 
 ## Cursor
 
@@ -33,12 +70,6 @@ Purpose:
 - expose repo rules in Cursor project-rule format
 - surface both product-level specialists and repo-slice specialists
 
-Import pattern:
-
-- copy or merge the generated `.cursor/rules` files into the target Cursor workspace
-- keep `00-control-plane.mdc` as the baseline rule
-- keep `10-specialists.mdc` as the specialist registry
-
 ## Windsurf
 
 Path:
@@ -50,11 +81,6 @@ Purpose:
 
 - provide a workspace rule that can be imported into Windsurf
 - keep instructions concise and repo-aware
-
-Import pattern:
-
-- import `workspace-rule.md` into Windsurf Customizations
-- use the generated README as the operator-facing setup note
 
 ## GitHub Copilot
 
@@ -69,14 +95,9 @@ Purpose:
 - provide repository-level instructions
 - provide a reusable planning prompt
 
-Import pattern:
-
-- place `copilot-instructions.md` at the repo-level `.github/` path expected by Copilot
-- keep `prompts/plan-project.prompt.md` available for planning-oriented sessions
-
 ## Automation boundary
 
-These bundles are generated artifacts, not guaranteed one-click installers for every future version of each tool. The current design focuses on producing the right files and guidance so the workspace can be imported or copied into the target tool with minimal friction.
+These files are generated artifacts, not guaranteed one-click installers for every future version of each tool. The current design focuses on producing the right repository conventions and markdown contracts so the workspace can be opened directly or copied into the target tool with minimal friction.
 
 ## Important constraint
 

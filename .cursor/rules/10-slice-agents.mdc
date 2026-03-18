@@ -1,0 +1,10 @@
+---
+description: Slice-agent workflow for repository decomposition
+alwaysApply: false
+---
+# Slice Agent Workflow
+
+- Detect module boundaries from manifests, directory structure, and key files.
+- Convert each significant slice into a markdown mini-agent with a clear path and task scope.
+- Keep the flagship model focused on orchestration while mini-agents hold local task context.
+- Escalate only when a task crosses slice boundaries or changes shared contracts.

@@ -1,0 +1,11 @@
+---
+description: Core rules for the agent systems control plane repository
+alwaysApply: true
+---
+# Agent Systems Control Plane
+
+- This repository can both scaffold new agent systems and analyze existing codebases.
+- If the user provides a local repo path, map the repository into slices before implementation.
+- Keep durable knowledge in markdown and generated artifacts.
+- Prefer narrow, path-bounded tasks that can be delegated to mini-agents.
+- Treat root docs and generated workspaces as first-class interfaces for external coding agents.

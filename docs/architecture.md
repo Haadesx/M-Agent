@@ -24,6 +24,8 @@ The repository follows the two-layer architecture described in the project instr
 
 This is everything that is generated for agent reasoning and review:
 - `AGENTS.md`
+- `CLAUDE.md`
+- `AGENT_ENTRYPOINTS.md`
 - `PRODUCT.md`
 - `ROADMAP.md`
 - `CODEBASE_MAP.md`
@@ -31,6 +33,10 @@ This is everything that is generated for agent reasoning and review:
 - `memory/`
 - `skills/generated/*.md`
 - `skills/generated/slices/*.md`
+- `.claude/agents/*.md`
+- `.claude/commands/*.md`
+- `.cursor/rules/*.mdc`
+- `.github/` prompts and instructions
 - tool export rules and prompts
 
 ### Execution layer
@@ -62,10 +68,11 @@ The current implementation deliberately keeps execution thin and pushes persiste
 3. `lib/generator.js` creates a workspace under `instances/<slug>/`.
 4. Shared scaffolding is copied in.
 5. Product-level specialists are generated.
-6. If repo context exists, slice-level agents and repo analysis docs are generated.
-7. Tool-specific integration bundles are written.
-8. `manifest.json` is written and becomes the UI-facing summary for that workspace.
-9. The frontend loads the workspace through `GET /api/projects/:slug` and reads specific files via `GET /api/projects/:slug/file`.
+6. Root-level tool entrypoints are written for Codex, Claude Code, Cursor, and Copilot.
+7. If repo context exists, slice-level agents and repo analysis docs are generated.
+8. Tool-specific integration bundles are written.
+9. `manifest.json` is written and becomes the UI-facing summary for that workspace.
+10. The frontend loads the workspace through `GET /api/projects/:slug` and reads specific files via `GET /api/projects/:slug/file`.
 
 ## Persistence model
 
@@ -85,6 +92,7 @@ This makes the system easy to inspect and debug, but it also means durability, m
 - very low setup overhead
 - all generated artifacts are inspectable
 - markdown outputs are easy to import into coding-agent tools
+- root-level repo contracts work directly in supported flagship tools
 - no hidden orchestration layer or opaque storage dependency
 
 ### Costs
