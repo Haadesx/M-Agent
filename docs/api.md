@@ -109,6 +109,7 @@ Generate a new workspace from the provided brief.
 - Creates `instances/<slug>/`
 - Copies shared scaffolding
 - Generates product-level markdown agents
+- Generates `TASK_BREAKDOWN.md` and task agents for direct execution
 - Writes root-level tool entrypoints for Codex, Claude Code, Cursor, and Copilot
 - If `repoPath` is present, runs repo analysis and generates codebase-aware artifacts
 - Writes `manifest.json`
@@ -117,8 +118,10 @@ Generate a new workspace from the provided brief.
 
 If `repoPath` is present, the workspace also includes:
 - `CODEBASE_MAP.md`
+- `TASK_BREAKDOWN.md`
 - `TASK_DISPATCH.md`
 - `memory/brain/resources/codebase-analysis.md`
+- `skills/generated/tasks/*.md`
 - `skills/generated/slices/*.md`
 - `.claude/agents/*.md` for repo slices
 - repo-aware Claude Code, Cursor, Copilot, Windsurf, and Codex exports

@@ -11,3 +11,5 @@ Read in this order:
 7. [limitations.md](./limitations.md)
 
 If you only need the high-level overview, start with the root [README.md](../README.md).
+
+For committed sample outputs, see [examples/README.md](../examples/README.md).

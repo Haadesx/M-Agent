@@ -35,8 +35,12 @@ test("createProject writes a complete workspace manifest", async () => {
   assert.ok(project.files.includes("AGENTS.md"));
   assert.ok(project.files.includes("CLAUDE.md"));
   assert.ok(project.files.includes("AGENT_ENTRYPOINTS.md"));
+  assert.ok(project.files.includes("TASK_BREAKDOWN.md"));
   assert.ok(project.files.includes(".claude/agents/security-reviewer.md"));
+  assert.ok(project.files.some((file) => file.startsWith(".claude/agents/task-")));
+  assert.ok(project.files.some((file) => file.startsWith("skills/generated/tasks/")));
   assert.ok(project.files.includes("integrations/cursor/.cursor/rules/00-control-plane.mdc"));
+  assert.ok(project.taskBreakdown.length >= 5);
   const productFile = await fs.readFile(path.join(project.workspacePath, "PRODUCT.md"), "utf8");
   assert.match(productFile, /QA Control Plane/);
 });
@@ -92,10 +96,13 @@ test("createProject writes codebase artifacts when repo context is provided", as
 
   assert.ok(project.codebase);
   assert.ok(project.files.includes("CODEBASE_MAP.md"));
+  assert.ok(project.files.includes("TASK_BREAKDOWN.md"));
   assert.ok(project.files.includes("TASK_DISPATCH.md"));
   assert.ok(project.files.some((file) => file.startsWith("skills/generated/slices/")));
+  assert.ok(project.files.some((file) => file.startsWith("skills/generated/tasks/")));
   assert.ok(project.files.some((file) => file.startsWith(".claude/agents/")));
   assert.ok(project.files.some((file) => file.startsWith("integrations/claude/.claude/agents/")));
   assert.ok(project.integrations.some((item) => item.tool === "Cursor"));
   assert.ok(project.integrations.some((item) => item.tool === "Claude Code"));
+  assert.ok(project.taskBreakdown.some((task) => task.ownerSlug === project.codebase.modules[0].id));
 });

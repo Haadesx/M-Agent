@@ -6,6 +6,7 @@ It does four things:
 - accepts a product brief through a web interface
 - accepts a local repository path plus a concrete implementation task
 - maps the codebase into slices and generates markdown mini-agents per slice
+- breaks both repo-backed and greenfield projects into smaller task agents
 - generates a full markdown-native project workspace under `instances/`
 - exports integration bundles for Codex, Claude Code, Cursor, Windsurf, and GitHub Copilot
 
@@ -19,6 +20,8 @@ It is also directly consumable as a repository by agentic coding tools:
 
 For deeper documentation, start with [docs/README.md](docs/README.md).
 
+Concrete demos live in [examples/README.md](examples/README.md).
+
 ## What the product generates
 
 Each workspace includes:
@@ -28,9 +31,11 @@ Each workspace includes:
 - `CODEBASE_MAP.md` when a repo path is provided
 - `PRODUCT.md`
 - `ROADMAP.md`
+- `TASK_BREAKDOWN.md`
 - `TASK_DISPATCH.md` when a repo path is provided
 - `.claude/agents/*.md` and `.claude/commands/*.md`
   - includes product specialists and repo-slice specialists for Claude Code
+- `skills/generated/tasks/*.md` task agents for greenfield and repo-backed work
 - `.cursor/rules/*.mdc`
 - `.github/copilot-instructions.md` and `.github/prompts/*.prompt.md`
 - `memory/` scaffolding
@@ -80,3 +85,8 @@ The app generates tool-specific instruction bundles under each workspace:
 - `integrations/github-copilot/`
 
 Each generated workspace is also directly consumable at the repo root through `AGENTS.md`, `CLAUDE.md`, `.claude/`, `.cursor/`, and `.github/`, so flagship coding agents can operate on it without a separate import step.
+
+## Demo Scenarios
+
+- Existing repo demo: [examples/vite-repo-demo/README.md](examples/vite-repo-demo/README.md)
+- Greenfield demo: [examples/greenfield-demo/README.md](examples/greenfield-demo/README.md)

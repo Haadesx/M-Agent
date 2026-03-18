@@ -1,6 +1,7 @@
 node_modules/
 .playwright-cli/
 output/
+demo-repos/
 instances/
 target_repo/
 coverage/

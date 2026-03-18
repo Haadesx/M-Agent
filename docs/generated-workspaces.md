@@ -11,6 +11,7 @@ instances/<slug>/
 ├── AGENT_ENTRYPOINTS.md
 ├── PRODUCT.md
 ├── ROADMAP.md
+├── TASK_BREAKDOWN.md
 ├── manifest.json
 ├── .claude/
 ├── .cursor/
@@ -51,6 +52,10 @@ Normalized product brief including:
 
 High-level delivery roadmap derived from the product brief.
 
+### `TASK_BREAKDOWN.md`
+
+Concrete implementation tasks derived from the brief or repo analysis. This is the bridge between high-level planning and directly callable task agents.
+
 ### `manifest.json`
 
 Primary UI-facing summary object. It includes:
@@ -69,7 +74,7 @@ Every generated workspace is intended to be opened directly by coding-agent tool
 
 ### `.claude/agents/*.md`
 
-Native Claude Code subagents for both product specialists and repo slices. These files make the specialist roster directly callable without translating from generic markdown first.
+Native Claude Code subagents for product specialists, task agents, and repo slices. These files make the specialist roster directly callable without translating from generic markdown first.
 
 ### `.claude/commands/*.md`
 
@@ -141,6 +146,10 @@ Written to `skills/generated/*.md` and mirrored into `.claude/agents/*.md` for t
 Written to `skills/generated/slices/*.md` when repo context exists and mirrored into `.claude/agents/*.md`.
 
 These are task-scoped and path-bounded by module.
+
+### Task agents
+
+Written to `skills/generated/tasks/*.md` for every project, including greenfield briefs. These break work into smaller execution units and are mirrored into `.claude/agents/*.md`.
 
 ### `skills/generated/INDEX.md`
 
