@@ -2,7 +2,7 @@
 
 This repository is a working local product for generating markdown-native agent systems.
 
-It does four things:
+It does a few things:
 - accepts a product brief through a web interface
 - accepts a local repository path plus a concrete implementation task
 - maps the codebase into slices and generates markdown mini-agents per slice
@@ -21,6 +21,7 @@ It is also directly consumable as a repository by agentic coding tools:
 For deeper documentation, start with [docs/README.md](docs/README.md).
 
 Concrete demos live in [examples/README.md](examples/README.md).
+These are committed snapshots of real runs, not mocked screenshots or static concepts.
 
 ## What the product generates
 
@@ -34,7 +35,7 @@ Each workspace includes:
 - `TASK_BREAKDOWN.md`
 - `TASK_DISPATCH.md` when a repo path is provided
 - `.claude/agents/*.md` and `.claude/commands/*.md`
-  - includes product specialists and repo-slice specialists for Claude Code
+- `.claude/agents/*.md` includes product specialists, task agents, and repo-slice specialists for Claude Code
 - `skills/generated/tasks/*.md` task agents for greenfield and repo-backed work
 - `.cursor/rules/*.mdc`
 - `.github/copilot-instructions.md` and `.github/prompts/*.prompt.md`
