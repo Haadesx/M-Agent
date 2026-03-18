@@ -1,0 +1,8 @@
+node_modules/
+.playwright-cli/
+output/
+instances/
+target_repo/
+coverage/
+.DS_Store
+

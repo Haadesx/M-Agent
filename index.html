@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent Systems Control Plane</title>
+    <meta
+      name="description"
+      content="Create markdown-native agent systems with generated sub-agents, project workspaces, and coding-tool integration bundles."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23183a63'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-family='Arial, sans-serif' font-size='28' font-weight='700' fill='%23fff8ed'%3EAP%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="background-orb orb-a"></div>
+      <div class="background-orb orb-b"></div>
+      <div class="background-grid"></div>
+
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="brand-mark">AP</div>
+          <div>
+            <p class="eyebrow">Enterprise agent infrastructure</p>
+            <h1>Agent Systems Control Plane</h1>
+          </div>
+        </div>
+
+        <nav class="topnav">
+          <a href="#studio">Studio</a>
+          <a href="#workspace">Workspace</a>
+          <a href="#integrations">Integrations</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="section-kicker">Operational product platform</p>
+            <h2>
+              Generate a working
+              <span>agent system with backend,</span>
+              specialists, and tool exports.
+            </h2>
+            <p class="hero-text">
+              This product takes a brief, optional repository context, and a
+              task. It maps the codebase into slices, generates markdown
+              mini-agents for each slice, writes a working workspace to disk,
+              and exports instructions for coding-agent tools such as Codex,
+              Cursor, Windsurf, and GitHub Copilot.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#studio">Create workspace</a>
+              <a class="button button-secondary" href="#workspace">Inspect generated files</a>
+            </div>
+            <div class="hero-metrics">
+              <article>
+                <span class="metric-value" id="heroProjectCount">0</span>
+                <span class="metric-label">saved workspaces</span>
+              </article>
+              <article>
+                <span class="metric-value" id="heroSubagentCount">0</span>
+                <span class="metric-label">generated specialists</span>
+              </article>
+              <article>
+                <span class="metric-value">4</span>
+                <span class="metric-label">tool export targets</span>
+              </article>
+            </div>
+          </div>
+
+          <div class="hero-panel glass-card">
+            <div class="panel-header">
+              <span class="status-dot"></span>
+              <span>System status</span>
+            </div>
+
+            <div class="signal-stack">
+              <article class="signal-card signal-card-primary">
+                <div>
+                  <p class="signal-label">Workspace</p>
+                  <h3 id="systemHeadline">No project selected</h3>
+                </div>
+                <p id="systemSummary">
+                  Create a project brief to generate a full markdown-native
+                  workspace.
+                </p>
+              </article>
+
+              <article class="signal-card">
+                <p class="signal-label">API status</p>
+                <p id="healthStatus">Connecting to local service…</p>
+              </article>
+
+              <article class="signal-mini-grid">
+                <div>
+                  <span>Selected buyer</span>
+                  <strong id="snapshotBuyer">Awaiting brief</strong>
+                </div>
+                <div>
+                  <span>Risk posture</span>
+                  <strong id="snapshotRisk">Not set</strong>
+                </div>
+                <div>
+                  <span>Generated files</span>
+                  <strong id="snapshotFiles">0</strong>
+                </div>
+                <div>
+                  <span>Integrations</span>
+                  <strong id="snapshotIntegrations">0</strong>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="studio-section" id="studio">
+          <div class="section-heading">
+            <p class="section-kicker">Operator thread</p>
+            <h2>Describe the task, attach repo context, and let the system decompose it</h2>
+          </div>
+
+          <div class="studio-grid">
+            <form class="control-panel glass-card" id="projectForm">
+              <div class="panel-header">
+                <span class="status-dot"></span>
+                <span>Product brief</span>
+              </div>
+
+              <label>
+                Product name
+                <input
+                  type="text"
+                  id="productName"
+                  value="Revenue Intelligence Copilot"
+                  placeholder="Acme Ops Copilot"
+                />
+              </label>
+
+              <label>
+                Primary buyer
+                <input
+                  type="text"
+                  id="customer"
+                  value="SMB revenue teams"
+                  placeholder="Platform engineering teams"
+                />
+              </label>
+
+              <label>
+                Core pain
+                <textarea id="problem" rows="4">Pipeline data, outreach history, and team context are fragmented across tools, so managers cannot see what to do next.</textarea>
+              </label>
+
+              <label>
+                Core workflow
+                <textarea id="workflow" rows="4">Summarize account state, recommend next actions, generate specialist markdown agents, and route authenticated updates through MCP.</textarea>
+              </label>
+
+              <label>
+                Local repo path
+                <input
+                  type="text"
+                  id="repoPath"
+                  value=""
+                  placeholder="/absolute/path/to/repo"
+                />
+              </label>
+
+              <label>
+                Requested task
+                <textarea id="task" rows="3">Map the repository, break the work into slices, and create markdown mini-agents that can be used by coding-agent tools.</textarea>
+              </label>
+
+              <label>
+                Extra context
+                <textarea id="contextNotes" rows="3">Prioritize the user-facing orchestration flow and keep repo slices narrow enough for parallel execution.</textarea>
+              </label>
+
+              <div class="inline-grid">
+                <label>
+                  Product lane
+                  <select id="productLane">
+                    <option>AI SaaS</option>
+                    <option>Dev Tool</option>
+                    <option>Vertical AI</option>
+                  </select>
+                </label>
+
+                <label>
+                  Data sensitivity
+                  <select id="riskLevel">
+                    <option value="soc2">SOC 2 ready</option>
+                    <option value="hipaa">HIPAA sensitive</option>
+                    <option value="baseline">Baseline security</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="inline-grid">
+                <label>
+                  Delivery priority
+                  <select id="priority">
+                    <option>Fast launch</option>
+                    <option>Enterprise controls</option>
+                    <option>Workflow depth</option>
+                  </select>
+                </label>
+
+                <label>
+                  Interface mode
+                  <select id="interfaceMode">
+                    <option>Operator cockpit</option>
+                    <option>Client portal</option>
+                    <option>Agent builder</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="button-row">
+                <button class="button button-secondary" type="button" id="analyzeButton">
+                  Analyze repo
+                </button>
+                <button class="button button-primary" type="submit" id="submitButton">
+                  Generate workspace
+                </button>
+              </div>
+            </form>
+
+            <div class="preview-column">
+              <article class="overview-card glass-card chat-card">
+                <div class="panel-header">
+                  <span class="status-dot"></span>
+                  <span>Operator thread</span>
+                </div>
+                <div id="chatThread" class="chat-thread"></div>
+              </article>
+
+              <article class="overview-card glass-card">
+                <div class="panel-header">
+                  <span class="status-dot"></span>
+                  <span>Repo-aware runtime output</span>
+                </div>
+                <h3 id="briefHeadline">
+                  The backend will create a workspace, not just a landing page.
+                </h3>
+                <p id="briefSummary">
+                  A generated project includes AGENTS.md, product and roadmap
+                  briefs, memory scaffolding, product-specific sub-agents, and
+                  tool export bundles.
+                </p>
+                <div class="pill-row">
+                  <span class="pill" id="briefLane">AI SaaS</span>
+                  <span class="pill" id="briefPriority">Fast launch</span>
+                  <span class="pill" id="briefMode">Operator cockpit</span>
+                </div>
+                <div class="stack-list compact-list" id="repoInsightList"></div>
+              </article>
+
+              <article class="roadmap-card glass-card">
+                <div class="panel-header">
+                  <span class="status-dot"></span>
+                  <span>Decomposition preview</span>
+                </div>
+                <div class="timeline-list" id="analysisTimeline">
+                  <div class="timeline-item">
+                    <span class="timeline-index">01</span>
+                    <div>
+                      <strong>Filesystem workspace</strong>
+                      <p>
+                        Writes a real instance under `instances/` with product,
+                        roadmap, memory, skills, compliance, and MCP assets.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-index">02</span>
+                    <div>
+                      <strong>Product-specific specialists</strong>
+                      <p>
+                        Generates markdown sub-agents aligned to the workflow,
+                        buyer, lane, and risk model.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-index">03</span>
+                    <div>
+                      <strong>Tool integration bundles</strong>
+                      <p>
+                        Exports Codex, Cursor, Windsurf, and GitHub Copilot
+                        instruction packs for immediate use.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace-section" id="workspace">
+          <div class="section-heading">
+            <p class="section-kicker">Generated workspaces</p>
+            <h2>Inspect projects, codebase slices, files, sub-agents, and integrations</h2>
+          </div>
+
+          <div class="workspace-grid">
+            <aside class="project-sidebar glass-card">
+              <div class="panel-header">
+                <span class="status-dot"></span>
+                <span>Projects</span>
+              </div>
+              <div id="projectList" class="project-list"></div>
+            </aside>
+
+            <div class="workspace-main">
+              <article class="project-summary glass-card">
+                <div class="summary-header">
+                  <div>
+                    <p class="section-kicker">Selected workspace</p>
+                    <h3 id="projectTitle">No workspace selected</h3>
+                  </div>
+                  <div class="summary-metrics">
+                    <span class="summary-chip" id="summaryRisk">No risk profile</span>
+                    <span class="summary-chip" id="summaryPath">No path</span>
+                  </div>
+                </div>
+                <p class="summary-text" id="projectNarrative">
+                  Create a workspace to inspect the generated project pack.
+                </p>
+                <div class="summary-grid">
+                  <div>
+                    <span>Buyer</span>
+                    <strong id="summaryBuyer">-</strong>
+                  </div>
+                  <div>
+                    <span>Priority</span>
+                    <strong id="summaryPriority">-</strong>
+                  </div>
+                  <div>
+                    <span>Sub-agents</span>
+                    <strong id="summarySubagents">0</strong>
+                  </div>
+                  <div>
+                    <span>Files</span>
+                    <strong id="summaryFiles">0</strong>
+                  </div>
+                </div>
+              </article>
+
+              <div class="tabs">
+                <button class="tab is-active" data-tab="overview">Overview</button>
+                <button class="tab" data-tab="codebase">Codebase</button>
+                <button class="tab" data-tab="subagents">Agents</button>
+                <button class="tab" data-tab="files">Files</button>
+                <button class="tab" data-tab="integrations" id="integrations">Integrations</button>
+              </div>
+
+              <div class="tab-panels">
+                <section class="tab-panel is-active" id="tab-overview">
+                  <div class="overview-grid">
+                    <article class="glass-card detail-card">
+                      <div class="panel-header">
+                        <span class="status-dot"></span>
+                        <span>Delivery roadmap</span>
+                      </div>
+                      <div id="roadmapList" class="stack-list"></div>
+                    </article>
+
+                    <article class="glass-card detail-card">
+                      <div class="panel-header">
+                        <span class="status-dot"></span>
+                        <span>Control posture</span>
+                      </div>
+                      <h4 id="riskTitle">No controls loaded</h4>
+                      <p id="riskSummary">
+                        Generated risk and compliance context will appear here.
+                      </p>
+                      <div class="control-list" id="controlList"></div>
+                    </article>
+                  </div>
+                </section>
+
+                <section class="tab-panel" id="tab-codebase">
+                  <div class="overview-grid">
+                    <article class="glass-card detail-card">
+                      <div class="panel-header">
+                        <span class="status-dot"></span>
+                        <span>Codebase summary</span>
+                      </div>
+                      <h4 id="codebaseTitle">No repository mapped</h4>
+                      <p id="codebaseSummary">
+                        Add a local repo path and analyze it to see module boundaries.
+                      </p>
+                      <div class="control-list" id="frameworkList"></div>
+                    </article>
+
+                    <article class="glass-card detail-card">
+                      <div class="panel-header">
+                        <span class="status-dot"></span>
+                        <span>Task slices</span>
+                      </div>
+                      <div class="cards-grid single-column" id="moduleGrid"></div>
+                    </article>
+                  </div>
+                </section>
+
+                <section class="tab-panel" id="tab-subagents">
+                  <div class="cards-grid" id="subagentGrid"></div>
+                </section>
+
+                <section class="tab-panel" id="tab-files">
+                  <div class="files-grid">
+                    <article class="glass-card file-list-card">
+                      <div class="panel-header">
+                        <span class="status-dot"></span>
+                        <span>Workspace files</span>
+                      </div>
+                      <div id="fileList" class="file-list"></div>
+                    </article>
+
+                    <article class="glass-card file-content-card">
+                      <div class="panel-header">
+                        <span class="status-dot"></span>
+                        <span id="fileViewerLabel">File preview</span>
+                      </div>
+                      <pre id="fileContent">Select a generated file to inspect its contents.</pre>
+                    </article>
+                  </div>
+                </section>
+
+                <section class="tab-panel" id="tab-integrations">
+                  <div class="cards-grid" id="integrationGrid"></div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
